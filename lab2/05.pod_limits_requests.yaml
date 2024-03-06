@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  namespace: study
+  name: limits_1
+spec:
+  containers:
+    - name: nginx
+      image: library/nginx:1.14.2
+      resources:
+        requests:
+          cpu: "250m"
+          memory: "125Mi"
+        limits:
+          cpu: "500m"
+          memory: "250Mi"          
+      ports:
+        - containerPort: 80

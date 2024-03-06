@@ -1,0 +1,14 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  namespace: study
+  name: my-simple-job
+spec:
+  ttlSecondsAfterFinished: 100
+  template:
+    spec:
+      containers:
+      - name: busybox
+        image: library/busybox:1.30
+        command: ['sh',  '-c', 'echo "Job running" && sleep 20']
+      restartPolicy: OnFailure

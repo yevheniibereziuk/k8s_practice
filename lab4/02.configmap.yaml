@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  namespace: study
+  name: env-vars
+data:
+  env: "dev"
+  

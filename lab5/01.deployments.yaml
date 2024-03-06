@@ -1,0 +1,111 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: study
+  name: first1
+  labels: 
+    app: first
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: first1
+  template:
+    metadata:
+      labels:
+        app: first1
+    spec:
+      terminationGracePeriodSeconds: 0
+      containers:
+      - name: first
+        image: hashicorp/http-echo
+        imagePullPolicy: IfNotPresent
+        args:
+          - -listen=:3000
+          - -text=first1
+        resources:
+          requests:
+            cpu: "125m"
+            memory: "50Mi"
+          limits:
+            memory: "50Mi"
+            cpu: "125m"
+        ports:
+        - containerPort: 3000
+          name: app-port
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: study
+  name: second1
+  labels: 
+    app: second1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: second1
+  template:
+    metadata:
+      labels:
+        app: second1
+    spec:
+      terminationGracePeriodSeconds: 0
+      containers:
+      - name: second1
+        image: hashicorp/http-echo
+        imagePullPolicy: IfNotPresent
+        args:
+          - -listen=:3000
+          - -text=second1
+        resources:
+          requests:
+            cpu: "125m"
+            memory: "50Mi"
+          limits:
+            memory: "50Mi"
+            cpu: "125m"
+        ports:
+        - containerPort: 3000
+          name: app-port
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: study
+  name: error1
+  labels: 
+    app: error1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: error1
+  template:
+    metadata:
+      labels:
+        app: error1
+    spec:
+      terminationGracePeriodSeconds: 0
+      containers:
+      - name: second1
+        image: hashicorp/http-echo
+        imagePullPolicy: IfNotPresent
+        args:
+          - -listen=:3000
+          - -text=error1
+        resources:
+          requests:
+            cpu: "125m"
+            memory: "50Mi"
+          limits:
+            memory: "50Mi"
+            cpu: "125m"
+        ports:
+        - containerPort: 3000
+          name: app-port

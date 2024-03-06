@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  namespace:
+  name: simple-quota
+spec: 
+ hard:
+   cpu: "100"
+   memory: 20Gi
+   pod: "10"
+ scopeSelector:
+   matchExpressions:
+     - operator: In 
+       scopeName: PriorityClass
+       values: ["high"]

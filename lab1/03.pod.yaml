@@ -1,0 +1,21 @@
+apiVersion: v1 
+kind: Pod
+metadata:
+  namespace: study
+  name: nginx
+spec: 
+ initContainers:
+   - name: busybox
+     image: library/busybox:1.28
+     command: 
+       - sh 
+       - -c
+       - echo "Hello world" && sleep 30
+ containers:
+   - name: nginx
+     image: library/nginx:1.14.2
+     ports:
+       - containerPort: 80
+   - name: nginx2
+     image: library/nginx:1.9
+     ports: 8080

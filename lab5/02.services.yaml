@@ -1,0 +1,54 @@
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: study
+  name: first1
+  labels:
+    app: first1
+spec:
+  type: ClusterIP
+  selector:
+    app: first1
+  ports:
+  - name: svc-port
+    port: 80
+    targetPort: app-port
+    protocol: TCP
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: study
+  name: second1
+  labels:
+    app: second1
+spec:
+  type: ClusterIP
+  selector:
+    app: second1
+  ports:
+  - name: svc-port
+    port: 80
+    targetPort: app-port
+    protocol: TCP
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: study
+  name: error1
+  labels:
+    app: error1
+spec:
+  type: ClusterIP
+  selector:
+    app: error1
+  ports:
+  - name: svc-port
+    port: 80
+    targetPort: app-port
+    protocol: TCP

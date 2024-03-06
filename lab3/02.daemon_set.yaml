@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  namespace: kube-system
+  name: fluentd1
+  labels:
+    k8s-app: fluentd-logging
+spec:
+  selector:
+    matchLabels:
+      k8s-app: fluentd-logging
+  template:
+    metadata:
+      name: fluentd1
+      labels: fluentd-logging
+    spec:
+      terminationGracePeriodSecond: 20
+      containers:
+        - name: fluentd1
+          image: library/nginx:1.14.2
+          resources:
+            limits:
+              memory: 200Mi
+            requests:
+              cpu: 200m 
+              memory: 200Mi

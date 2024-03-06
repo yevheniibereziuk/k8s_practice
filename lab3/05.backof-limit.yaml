@@ -1,0 +1,24 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  namespace: study
+  name: backoff
+spec:
+  ttlSecondsAfterFinished: 100
+  completions: 10
+  parallelism: 3
+  backoffLimit: 4
+  template:
+    spec:
+      containers:
+      - name: example
+        image: python
+        command:
+          - python3
+          - -c
+          - | 
+            import os, sys
+            print("Hello world")
+            if int(os.environ.get("JOB_COMPLETION_INDEX")) % 2  == 0:
+              sys.exit(1)
+      restartPolicy: Never

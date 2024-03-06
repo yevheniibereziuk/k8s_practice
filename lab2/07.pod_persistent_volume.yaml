@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  namespace: study
+  name: pv-test
+  labels:
+    type: local
+spec: 
+ storageClassName: "gp2"
+ capasity:
+   storage: 5Gi
+ accessModes:
+   - ReadWriteOnce
+ hostPath:
+   path: "/mnt/data"
